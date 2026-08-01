@@ -41,6 +41,7 @@ Existing configuration files are backed up automatically under `~/.gemini/config
 ## Included Skills
 
 - `$ai-project-manager`: Manage project requirements (`SPEC.md`, `ROADMAP.md`, `TASKS.md`) and Planning Mode execution.
+- `$axiom`: Senior OT/ICS Security Engineer & Consultant for threat modeling, CRA compliance, IEC 62443, and building secure Python and C/C++ embedded software tools.
 - `$pr-readiness`: Final diff verification, linting, test validation, and PR readiness checks.
 - `$bash-scripting`: Safe Bash/POSIX script creation and ShellCheck validation.
 - `$linux-sysadmin`: Linux system diagnostics, systemd, and log analysis.

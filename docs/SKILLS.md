@@ -4,6 +4,7 @@ The following skills are managed under `.agents/skills/` and automatically loade
 
 ## Repository skills
 - `ai-project-manager`
+- `axiom`
 - `bash-scripting`
 - `forgejo-maintainer`
 - `homelab-admin`
