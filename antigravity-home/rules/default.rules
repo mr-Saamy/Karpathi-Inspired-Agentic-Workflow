@@ -1,0 +1,10 @@
+# Default Execution Policy Rules for Antigravity AI
+
+# Command filtering policy
+allow command "rtk"
+allow command "git status"
+allow command "git diff"
+allow command "git log"
+
+# Prevent accidental secret exposure
+deny environment_variable_match "(?i)(api_key|token|secret|password|private_key)"

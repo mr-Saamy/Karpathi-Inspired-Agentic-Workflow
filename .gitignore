@@ -1,0 +1,32 @@
+# OS / Editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Antigravity & AI runtime state / credentials (DO NOT TRACK)
+auth.json
+history.jsonl
+installation_id
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+brain/
+scratch/
+backups/
+logs/
+cache/
+tmp/
+
+# Language runtime ignore
+node_modules/
+__pycache__/
+*.pyc
+venv/
+.venv/
+target/
+dist/
+build/
