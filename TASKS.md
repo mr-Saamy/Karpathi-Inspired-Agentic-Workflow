@@ -1,18 +1,9 @@
-# Tasks: antigravity-ai
+# Unified Task Tracking
 
-## Active Tasks
+## Current Tasks
 
-- [x] Initial repository setup and specification.
-- [x] Write managed configuration files in `antigravity-home/`.
-- [x] Adapt and port reusable skills into `.agents/skills/`.
-- [x] Write comprehensive reference manuals in `docs/`.
-- [x] Develop Linux/macOS and Windows installers with backup capabilities.
-- [x] Develop strict validation suite (`scripts/validate.sh`).
-- [x] Run validation suite and verify installer integration.
-
-## Validation Status
-
-- Validated syntax with `bash -n` and `shellcheck`.
-- Validated YAML frontmatter across all skills in `.agents/skills/`.
-- Validated documentation sync between `docs/SKILLS.md` and `.agents/skills/`.
-- Validated installation dry-run and backup execution.
+- [x] Restructure repository into `Antigravity IDE` and `Github Copilot` folders.
+- [x] Create native GitHub Copilot instructions (`.github/copilot-instructions.md`) and prompt files (`.github/prompts/*.prompt.md`).
+- [x] Create GitHub Copilot installers and validation scripts.
+- [x] Create unified top-level `README.md` guiding users to their IDE of choice.
+- [x] Run repository-wide validation suite (`scripts/validate-all.sh`).

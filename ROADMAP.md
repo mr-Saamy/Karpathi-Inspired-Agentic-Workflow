@@ -1,34 +1,17 @@
-# Roadmap: antigravity-ai
+# Unified Development Roadmap
 
-## Phase 1: Foundation & Core Layout
-- [x] Establish repository structure (`AGENTS.md`, `SPEC.md`, `ROADMAP.md`, `TASKS.md`, `.gitignore`).
-- [x] Create managed global configuration under `antigravity-home/` (`AGENTS.md`, `skills.json`, `rules/default.rules`).
+## Phase 1: Antigravity IDE Configuration
+- [x] Portable Antigravity IDE layout and skill manifest.
+- [x] 13 production-ready skills under `.agents/skills/`.
+- [x] Safe installer and validation scripts.
 
-## Phase 2: Skills Porting & Antigravity Native Optimization
-- [x] Port core reusable skills to `.agents/skills/`:
-  - `ai-project-manager`
-  - `pr-readiness`
-  - `bash-scripting`
-  - `linux-sysadmin`
-  - `python-ai`
-  - `rust-cli`
-  - `homelab-admin`
-  - `forgejo-maintainer`
-  - `podman-operator`
-  - `hugo`
-  - `mdbook`
-  - `quickshell`
-- [x] Update skill instructions to reference Antigravity native tools and planning mode artifacts.
+## Phase 2: GitHub Copilot Adaptation
+- [x] Create dedicated `Github Copilot/` environment directory.
+- [x] Write `.github/copilot-instructions.md` with agent principles and RTK rules.
+- [x] Translate 13 agent skills to VS Code `.github/prompts/*.prompt.md` files.
+- [x] Write Copilot cross-platform installers and validation scripts.
 
-## Phase 3: Reference Documentation
-- [x] Create `docs/ANTIGRAVITY_LAYOUT.md` explaining Antigravity discovery roots.
-- [x] Create `docs/SKILLS.md` documenting skill trigger patterns.
-- [x] Create `docs/WORKFLOW.md` detailing the AI development workflow.
-- [x] Create `docs/PROMPT_GUIDE.md` for getting maximum value out of Antigravity AI.
-- [x] Write top-level `README.md`.
-
-## Phase 4: Installer & Validation Suite
-- [x] Implement POSIX Bash installer (`scripts/install.sh`).
-- [x] Implement PowerShell installer (`scripts/install.ps1`).
-- [x] Implement `scripts/validate.sh` and integration tests `scripts/test-install.sh` / `scripts/test-install.ps1`.
-- [x] Add GitHub Actions workflows.
+## Phase 3: Unified Documentation & Validation
+- [x] Reorganize workspace into `Antigravity IDE/` and `Github Copilot/`.
+- [x] Write unified multi-IDE `README.md`.
+- [x] Create root `scripts/validate-all.sh` validator runner.

@@ -69,6 +69,15 @@ When analyzing threats or attack vectors, **always** execute all six steps:
 
 When creating cybersecurity tools or software components:
 
+### Operating principles
+
+- Working code only. Plausibility is not correctness; verify before reporting done.
+- Never fabricate file paths, APIs, commit hashes, command output, or test results.
+- Say when a premise appears wrong before implementing around it.
+- Ask before proceeding only when a request has multiple plausible interpretations and the choice materially affects the result.
+- Touch only what the task requires. Avoid drive-by refactors, formatting, or cleanup.
+- Keep communication direct and concise. Skip flattery, filler, ceremonial openings, and emoji.
+
 ### Python Security Tooling
 - Use `uv` for reproducible environment management and dependency locking.
 - Write strict type annotations (`mypy` compliant) and Pydantic/dataclass models for threat catalogs and TARA outputs.

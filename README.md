@@ -1,101 +1,145 @@
-# antigravity-ai
+# Universal AI Agent Framework
 
-Portable Antigravity IDE configuration, rules, workflow principles, and reusable skills.
+Portable, high-performance AI agent configuration, rules, workflows, and reusable skill libraries for **Antigravity IDE** and **VS Code with GitHub Copilot**.
 
-## Features
+---
 
-- **Native Antigravity Integration**: Optimized for Antigravity IDE tool calling (`replace_file_content`, `multi_replace_file_content`), Planning Mode artifacts (`implementation_plan.md`, `walkthrough.md`), Knowledge Items (KIs), and slash commands (`/goal`, `/grill-me`, `/learn`).
-- **Clean Separation of Config & Runtime State**: Manages instructions, rules, profiles, and skills without cluttering git with private keys, credentials, SQLite state, or ephemeral session transcripts.
-- **Output Compression with RTK**: Integrates selective `rtk` execution rules to maximize Gemini 3.6 context efficiency.
-- **Cross-Platform Installer**: Safe POSIX Bash (`install.sh`) and PowerShell (`install.ps1`) installers with automated config backups.
-- **Comprehensive Skill Library**: 12 pre-configured, production-ready skills under `.agents/skills/`.
+## Overview
 
-## Installation
+This repository provides an enterprise-ready, cross-IDE framework designed to give developer AI agents (such as Antigravity IDE and GitHub Copilot) structured workflows, empirical verification habits, token/output compression capabilities (`rtk`), and specialized skills.
 
-### Linux / macOS
+### Supported IDE Environments
 
-Preview changes with dry-run:
+| IDE Target | Directory | Target Integrations |
+| :--- | :--- | :--- |
+| **Antigravity IDE** | [`Antigravity IDE/`](./Antigravity%20IDE) | Gemini 3.6 Flash / Pro, native tool calling (`replace_file_content`), Planning Mode (`implementation_plan.md`, `walkthrough.md`), Knowledge Items, `.agents/skills/` |
+| **GitHub Copilot** | [`Github Copilot/`](./Github%20Copilot) | VS Code, Copilot Chat & Agent Mode, `.github/copilot-instructions.md`, prompt files (`.github/prompts/*.prompt.md`), `.github/instructions/` |
+
+---
+
+## Core Framework Principles
+
+Across both IDE environments, the framework enforces uniform agent behavior:
+
+1. **Working Code Only**: Plausibility is not correctness. Agents empirically verify code using build/test tools before reporting completion.
+2. **Strict Verification**: No fabricated paths, commit hashes, or fake test results. Full logs and tracebacks are inspected before diagnosing failures.
+3. **Planning & Implementation Workflows**: Non-trivial tasks require explicit implementation plans, clear review boundaries, and step-by-step execution.
+4. **Token Compression with RTK**: Integrates `rtk` execution rules to compress noisy build logs, linter outputs, and test runs, maximizing LLM context efficiency.
+5. **Clean Separation of Config & Runtime**: Configuration, rules, and skills are maintained cleanly without tracking credentials, databases, or temporary session logs.
+
+---
+
+## Quick Start & Installation
+
+Choose the folder corresponding to your primary IDE and run the installer:
+
+### Option A: Antigravity IDE
+
 ```bash
+cd "Antigravity IDE"
+
+# Preview installation
 ./scripts/install.sh --dry-run
-```
 
-Install to `~/.gemini/config/`:
-```bash
+# Install to ~/.gemini/config/
 ./scripts/install.sh
 ```
 
-### Windows (PowerShell)
-
-Preview changes:
+For Windows PowerShell:
 ```powershell
-.\scripts\install.ps1 -DryRun
-```
-
-Install:
-```powershell
+cd "Antigravity IDE"
 .\scripts\install.ps1
 ```
 
-Existing configuration files are backed up automatically under `~/.gemini/config/backups/antigravity-ai-<timestamp>/`.
+For complete layout details, see [`Antigravity IDE/README.md`](./Antigravity%20IDE/README.md) and [`Antigravity IDE/docs/ANTIGRAVITY_LAYOUT.md`](./Antigravity%20IDE/docs/ANTIGRAVITY_LAYOUT.md).
 
-## Included Skills
+---
 
-- `$ai-project-manager`: Manage project requirements (`SPEC.md`, `ROADMAP.md`, `TASKS.md`) and Planning Mode execution.
-- `$axiom`: Senior OT/ICS Security Engineer & Consultant for threat modeling, CRA compliance, IEC 62443, and building secure Python and C/C++ embedded software tools.
-- `$pr-readiness`: Final diff verification, linting, test validation, and PR readiness checks.
-- `$bash-scripting`: Safe Bash/POSIX script creation and ShellCheck validation.
-- `$linux-sysadmin`: Linux system diagnostics, systemd, and log analysis.
-- `$python-ai`: Python AI app development using `uv` and model provider integration.
-- `$rust-cli`: Cargo workflows and Rust CLI app design.
-- `$homelab-admin`: Homelab network, NFS, reverse proxies, and infrastructure.
-- `$forgejo-maintainer`: Forgejo and Gitea instance administration.
-- `$podman-operator`: Podman containers, Quadlet units, and rootless setups.
-- `$hugo`: Hugo static site generation and template validation.
-- `$mdbook`: mdBook manuscript building and structure verification.
-- `$quickshell`: Quickshell QML desktop shell configurations.
+### Option B: VS Code with GitHub Copilot
 
-## Recommended CLI Tools
+```bash
+cd "Github Copilot"
 
-### RTK (Token / Output Compression)
+# Preview installation
+./scripts/install.sh --dry-run
 
-Install `rtk` to filter noisy terminal command output:
+# Install to ~/.config/github-copilot/
+./scripts/install.sh
+```
+
+For Windows PowerShell:
+```powershell
+cd "Github Copilot"
+.\scripts\install.ps1
+```
+
+For complete layout details, see [`Github Copilot/README.md`](./Github%20Copilot/README.md) and [`Github Copilot/docs/COPILOT_LAYOUT.md`](./Github%20Copilot/docs/COPILOT_LAYOUT.md).
+
+---
+
+## Included Skills Library
+
+Both environments include 13 production-ready skill modules with full functional parity:
+
+| Skill | Purpose | Antigravity IDE Path | GitHub Copilot Path |
+| :--- | :--- | :--- | :--- |
+| **`ai-project-manager`** | Requirements planning & task management | `.agents/skills/ai-project-manager/` | `.github/prompts/ai-project-manager.prompt.md` |
+| **`axiom`** | OT/ICS security engineering & IEC 62443 / CRA | `.agents/skills/axiom/` | `.github/prompts/axiom.prompt.md` |
+| **`pr-readiness`** | Diff verification & PR review readiness | `.agents/skills/pr-readiness/` | `.github/prompts/pr-readiness.prompt.md` |
+| **`bash-scripting`** | POSIX Bash scripting & ShellCheck | `.agents/skills/bash-scripting/` | `.github/prompts/bash-scripting.prompt.md` |
+| **`linux-sysadmin`** | Linux sysadmin, systemd & diagnostics | `.agents/skills/linux-sysadmin/` | `.github/prompts/linux-sysadmin.prompt.md` |
+| **`python-ai`** | Python AI development & `uv` workflows | `.agents/skills/python-ai/` | `.github/prompts/python-ai.prompt.md` |
+| **`rust-cli`** | Rust CLI engineering & Cargo | `.agents/skills/rust-cli/` | `.github/prompts/rust-cli.prompt.md` |
+| **`homelab-admin`** | Homelab network, NFS & infrastructure | `.agents/skills/homelab-admin/` | `.github/prompts/homelab-admin.prompt.md` |
+| **`forgejo-maintainer`** | Forgejo / Gitea server administration | `.agents/skills/forgejo-maintainer/` | `.github/prompts/forgejo-maintainer.prompt.md` |
+| **`podman-operator`** | Rootless Podman & Quadlet units | `.agents/skills/podman-operator/` | `.github/prompts/podman-operator.prompt.md` |
+| **`hugo`** | Hugo static site generation | `.agents/skills/hugo/` | `.github/prompts/hugo.prompt.md` |
+| **`mdbook`** | mdBook documentation compilation | `.agents/skills/mdbook/` | `.github/prompts/mdbook.prompt.md` |
+| **`quickshell`** | Quickshell QML desktop shell development | `.agents/skills/quickshell/` | `.github/prompts/quickshell.prompt.md` |
+
+---
+
+## Recommended Token Compression CLI: RTK
+
+Install `rtk` to filter noisy terminal output and reduce context usage:
+
 ```bash
 cargo install --git https://github.com/rtk-ai/rtk
-```
-
-Ensure Cargo binaries are on your `PATH`:
-```bash
 export PATH="$HOME/.cargo/bin:$PATH"
-```
-
-Verify installation:
-```bash
 rtk --version
 ```
 
-Antigravity will automatically use `rtk` when running build suites, test runs, or broad searches.
-
-## AI Development Workflow
-
-1. **Planning**: Ask Antigravity to plan major features. It will read `AGENTS.md` and KIs, then create `<appDataDir>/brain/<conversation-id>/implementation_plan.md`.
-2. **Review & Approval**: Review the plan and approve execution.
-3. **Incremental Execution**: Antigravity executes using native file editing tools.
-4. **Verification & PR Readiness**: Run `$pr-readiness` to validate code changes and update task tracking.
-
-For full workflow details, see [docs/WORKFLOW.md](docs/WORKFLOW.md) and [docs/PROMPT_GUIDE.md](docs/PROMPT_GUIDE.md).
+---
 
 ## Validation
 
-Run the validation suite to verify syntax, skill definitions, and installer integrity:
+To validate both IDE configurations across the repository, run the global validation suite:
+
 ```bash
-./scripts/validate.sh
+./scripts/validate-all.sh
 ```
+
+---
 
 ## Repository Structure
 
-- `AGENTS.md`: Repository maintenance rules.
-- `SPEC.md`, `ROADMAP.md`, `TASKS.md`: Requirements, phase order, and validated task tracking.
-- `antigravity-home/`: Managed global instructions, rules, and skill manifests.
-- `.agents/skills/`: Reusable skills library.
-- `docs/`: Deep-dive documentation (`ANTIGRAVITY_LAYOUT.md`, `SKILLS.md`, `WORKFLOW.md`, `PROMPT_GUIDE.md`).
-- `scripts/`: Installers and validation runner.
+```text
+.
+├── Antigravity IDE/         # Antigravity IDE configuration & skills
+│   ├── AGENTS.md            # Maintenance instructions
+│   ├── antigravity-home/    # Managed global rules and manifests
+│   ├── .agents/skills/      # 13 Antigravity skills
+│   ├── docs/                # Antigravity layout & prompt guides
+│   └── scripts/             # Antigravity installers & validator
+├── Github Copilot/          # GitHub Copilot configuration & prompts
+│   ├── AGENTS.md            # Maintenance instructions
+│   ├── .github/             # copilot-instructions.md & prompts/
+│   ├── docs/                # Copilot layout & prompt guides
+│   └── scripts/             # Copilot installers & validator
+├── scripts/
+│   └── validate-all.sh      # Repository-wide validation runner
+├── README.md                # Unified multi-IDE documentation
+├── SPEC.md                  # Project specification
+├── ROADMAP.md               # Unified development roadmap
+└── TASKS.md                 # Project task tracking
+```
