@@ -1,6 +1,6 @@
 # Universal AI Agent Framework
 
-Portable, high-performance AI agent configuration, rules, workflows, and reusable skill libraries for **Antigravity IDE** and **VS Code with GitHub Copilot**.
+Portable, high-performance AI agent configuration, rules, workflows, and reusable skill libraries for **Antigravity IDE** and **VS Code with GitHub Copilot**. Based on [ChrisTitusTech's AI Workflow](https://github.com/ChrisTitusTech/titus-ai).
 
 ---
 
