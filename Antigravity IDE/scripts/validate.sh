@@ -59,8 +59,8 @@ done
 
 documented_skills="$(
   sed -n '/^## Repository skills$/,/^## /p' "$repo_root/docs/SKILLS.md" |
-    # shellcheck disable=SC2016
-    sed -n 's/^- `\([^`]*\)`$/\1/p' |
+    grep '^- `' |
+    cut -d'`' -f2 |
     sort
 )"
 actual_skills="$(printf '%s' "$actual_skills" | sed '/^$/d' | sort)"
