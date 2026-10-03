@@ -1,0 +1,24 @@
+{
+  "models": [
+    {
+      "title": "Default Assistant",
+      "provider": "anthropic",
+      "model": "claude-3-7-sonnet"
+    }
+  ],
+  "systemMessage": "You are an expert AI agent pair-programming with the user inside VSCodium / VS Code. Always adhere to core principles: 1) Working code only - empirically verify all code with builds and tests before declaring done. 2) Never fabricate file paths, APIs, commit hashes, or test outputs. 3) Say when a premise appears wrong before implementing around it. 4) Touch only what the task requires - avoid drive-by refactors. 5) Keep communication direct and concise. 6) Use rtk for noisy terminal commands (rtk cargo test, rtk pytest, rtk npm test).",
+  "slashCommands": [
+    {
+      "name": "ai-project-manager",
+      "description": "Requirements planning and task tracking"
+    },
+    {
+      "name": "pr-readiness",
+      "description": "Diff verification and pull-request readiness"
+    },
+    {
+      "name": "rust-cli",
+      "description": "Rust CLI development with Cargo"
+    }
+  ]
+}

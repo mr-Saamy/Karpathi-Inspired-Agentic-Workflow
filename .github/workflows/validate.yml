@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install ShellCheck
         run: sudo apt-get install -y shellcheck
-      - name: Run validation suite
+      - name: Run universal validation suite
         run: ./scripts/validate-all.sh
 
   validate-windows:
@@ -24,3 +24,9 @@ jobs:
         run: powershell -ExecutionPolicy Bypass -File '.\Antigravity IDE\scripts\test-install.ps1'
       - name: Run GitHub Copilot PowerShell installer test
         run: powershell -ExecutionPolicy Bypass -File '.\Github Copilot\scripts\test-install.ps1'
+      - name: Run Zed Editor PowerShell installer test
+        run: powershell -ExecutionPolicy Bypass -File '.\Zed\scripts\test-install.ps1'
+      - name: Run VSCodium PowerShell installer test
+        run: powershell -ExecutionPolicy Bypass -File '.\VSCodium\scripts\test-install.ps1'
+      - name: Run Terminal & CLI PowerShell installer test
+        run: powershell -ExecutionPolicy Bypass -File '.\Terminal\scripts\test-install.ps1'

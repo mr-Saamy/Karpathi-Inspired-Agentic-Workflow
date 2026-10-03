@@ -1,0 +1,12 @@
+{
+  "assistant": {
+    "version": "2",
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-3-7-sonnet"
+    },
+    "system_prompt": {
+      "path": ".zed/assistant-instructions.md"
+    }
+  }
+}

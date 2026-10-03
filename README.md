@@ -1,25 +1,28 @@
 # Universal AI Agent Framework
 
-Portable, high-performance AI agent configuration, rules, workflows, and reusable skill libraries for **Antigravity IDE** and **VS Code with GitHub Copilot**. Based on [ChrisTitusTech's AI Workflow](https://github.com/ChrisTitusTech/titus-ai).
+Portable, high-performance AI agent configuration, rules, workflows, and reusable skill libraries for **Antigravity IDE**, **VS Code with GitHub Copilot**, **Zed Editor**, **VSCodium / Open VS Code**, and **Terminal / CLI Agents**. Based on [ChrisTitusTech's AI Workflow](https://github.com/ChrisTitusTech/titus-ai) and Andrej Karpathy's agentic principles.
 
 ---
 
 ## Overview
 
-This repository provides an enterprise-ready, cross-IDE framework designed to give developer AI agents (such as Antigravity IDE and GitHub Copilot) structured workflows, empirical verification habits, token/output compression capabilities (`rtk`), and specialized skills.
+This repository provides an enterprise-ready, cross-environment framework designed to give developer AI agents structured workflows, empirical verification habits, token/output compression capabilities (`rtk`), and 13 specialized domain skills.
 
-### Supported IDE Environments
+### Supported Environments
 
-| IDE Target | Directory | Target Integrations |
+| Target Environment | Directory | Target Integrations & Scope |
 | :--- | :--- | :--- |
-| **Antigravity IDE** | [`Antigravity IDE/`](./Antigravity%20IDE) | Gemini 3.6 Flash / Pro, native tool calling (`replace_file_content`), Planning Mode (`implementation_plan.md`, `walkthrough.md`), Knowledge Items, `.agents/skills/` |
+| **Antigravity IDE** | [`Antigravity IDE/`](./Antigravity%20IDE) | Gemini 3.6/3.8 Flash & Pro, native tool calling, Planning Mode (`implementation_plan.md`, `walkthrough.md`), Knowledge Items, `.agents/skills/` |
 | **GitHub Copilot** | [`Github Copilot/`](./Github%20Copilot) | VS Code, Copilot Chat & Agent Mode, `.github/copilot-instructions.md`, prompt files (`.github/prompts/*.prompt.md`), `.github/instructions/` |
+| **Zed Editor** | [`Zed/`](./Zed) | Zed Assistant, assistant settings (`.zed/settings.json`), prompt slash commands (`.zed/prompts/*.prompt.md`), Context Servers (MCP) |
+| **VSCodium / Open VS Code** | [`VSCodium/`](./VSCodium) | Cline (`.clinerules`), Roo-Code (`.roomodes`), Continue.dev (`.continue/config.json`, `.continue/prompts/*.prompt.md`) |
+| **Terminal / CLI / Neovim** | [`Terminal/`](./Terminal) | Claude Code CLI (`CLAUDE.md`), Aider (`.aider.conf.yml`, `.aider.prompt.md`), Neovim Avante (`.avante/templates/`), `prompts/` |
 
 ---
 
 ## Core Framework Principles
 
-Across both IDE environments, the framework enforces uniform agent behavior:
+Across all environments, the framework strictly enforces:
 
 1. **Working Code Only**: Plausibility is not correctness. Agents empirically verify code using build/test tools before reporting completion.
 2. **Strict Verification**: No fabricated paths, commit hashes, or fake test results. Full logs and tracebacks are inspected before diagnosing failures.
@@ -31,75 +34,62 @@ Across both IDE environments, the framework enforces uniform agent behavior:
 
 ## Quick Start & Installation
 
-Choose the folder corresponding to your primary IDE and run the installer:
+Install for a specific environment or all environments using the unified installer:
 
-### Option A: Antigravity IDE
-
-```bash
-cd "Antigravity IDE"
-
-# Preview installation
-./scripts/install.sh --dry-run
-
-# Install to ~/.gemini/config/
-./scripts/install.sh
-```
-
-For Windows PowerShell:
-```powershell
-cd "Antigravity IDE"
-.\scripts\install.ps1
-```
-
-For complete layout details, see [`Antigravity IDE/README.md`](./Antigravity%20IDE/README.md) and [`Antigravity IDE/docs/ANTIGRAVITY_LAYOUT.md`](./Antigravity%20IDE/docs/ANTIGRAVITY_LAYOUT.md).
-
----
-
-### Option B: VS Code with GitHub Copilot
+### Linux / macOS
 
 ```bash
-cd "Github Copilot"
-
-# Preview installation
+# Preview installation for all targets
 ./scripts/install.sh --dry-run
 
-# Install to ~/.config/github-copilot/
-./scripts/install.sh
+# Install a specific environment
+./scripts/install.sh --target antigravity
+./scripts/install.sh --target copilot
+./scripts/install.sh --target zed
+./scripts/install.sh --target vscodium
+./scripts/install.sh --target terminal
+
+# Or install all environments
+./scripts/install.sh --target all
 ```
 
-For Windows PowerShell:
+### Windows (PowerShell)
+
 ```powershell
-cd "Github Copilot"
-.\scripts\install.ps1
-```
+# Preview installation
+.\scripts\install.ps1 -DryRun
 
-For complete layout details, see [`Github Copilot/README.md`](./Github%20Copilot/README.md) and [`Github Copilot/docs/COPILOT_LAYOUT.md`](./Github%20Copilot/docs/COPILOT_LAYOUT.md).
+# Install a specific environment
+.\scripts\install.ps1 -Target zed
+.\scripts\install.ps1 -Target copilot
+.\scripts\install.ps1 -Target all
+```
 
 ---
 
 ## Included Skills Library
 
-Both environments include 13 production-ready skill modules with full functional parity:
+All 5 environments maintain 100% parity across 13 production-ready skill modules:
 
-| Skill | Purpose | Antigravity IDE Path | GitHub Copilot Path |
-| :--- | :--- | :--- | :--- |
-| **`ai-project-manager`** | Requirements planning & task management | `.agents/skills/ai-project-manager/` | `.github/prompts/ai-project-manager.prompt.md` |
-| **`axiom`** | OT/ICS security engineering & IEC 62443 / CRA | `.agents/skills/axiom/` | `.github/prompts/axiom.prompt.md` |
-| **`pr-readiness`** | Diff verification & PR review readiness | `.agents/skills/pr-readiness/` | `.github/prompts/pr-readiness.prompt.md` |
-| **`bash-scripting`** | POSIX Bash scripting & ShellCheck | `.agents/skills/bash-scripting/` | `.github/prompts/bash-scripting.prompt.md` |
-| **`linux-sysadmin`** | Linux sysadmin, systemd & diagnostics | `.agents/skills/linux-sysadmin/` | `.github/prompts/linux-sysadmin.prompt.md` |
-| **`python-ai`** | Python AI development & `uv` workflows | `.agents/skills/python-ai/` | `.github/prompts/python-ai.prompt.md` |
-| **`rust-cli`** | Rust CLI engineering & Cargo | `.agents/skills/rust-cli/` | `.github/prompts/rust-cli.prompt.md` |
-| **`homelab-admin`** | Homelab network, NFS & infrastructure | `.agents/skills/homelab-admin/` | `.github/prompts/homelab-admin.prompt.md` |
-| **`forgejo-maintainer`** | Forgejo / Gitea server administration | `.agents/skills/forgejo-maintainer/` | `.github/prompts/forgejo-maintainer.prompt.md` |
-| **`podman-operator`** | Rootless Podman & Quadlet units | `.agents/skills/podman-operator/` | `.github/prompts/podman-operator.prompt.md` |
-| **`hugo`** | Hugo static site generation | `.agents/skills/hugo/` | `.github/prompts/hugo.prompt.md` |
-| **`mdbook`** | mdBook documentation compilation | `.agents/skills/mdbook/` | `.github/prompts/mdbook.prompt.md` |
-| **`quickshell`** | Quickshell QML desktop shell development | `.agents/skills/quickshell/` | `.github/prompts/quickshell.prompt.md` |
+| Skill | Purpose | Antigravity IDE | GitHub Copilot | Zed Editor | VSCodium | Terminal / CLI |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **`ai-project-manager`** | Requirements planning & task management | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`axiom`** | OT/ICS security & IEC 62443 / CRA | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`pr-readiness`** | Diff verification & PR review readiness | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`bash-scripting`** | POSIX Bash scripting & ShellCheck | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`linux-sysadmin`** | Linux sysadmin, systemd & diagnostics | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`python-ai`** | Python AI development & `uv` workflows | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`rust-cli`** | Rust CLI engineering & Cargo | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`homelab-admin`** | Homelab network, NFS & infrastructure | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`forgejo-maintainer`** | Forgejo / Gitea server administration | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`podman-operator`** | Rootless Podman & Quadlet units | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`hugo`** | Hugo static site generation | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`mdbook`** | mdBook documentation compilation | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
+| **`quickshell`** | Quickshell QML desktop shell development | `.agents/skills/` | `.github/prompts/` | `.zed/prompts/` | `.continue/prompts/` | `prompts/` |
 
 ---
 
-## Recommended Token Compression CLI: RTK
+## Token Compression CLI: RTK
 
 Install `rtk` to filter noisy terminal output and reduce context usage:
 
@@ -111,9 +101,9 @@ rtk --version
 
 ---
 
-## Validation
+## Validation & Verification
 
-To validate both IDE configurations across the repository, run the global validation suite:
+Run the comprehensive multi-environment validation suite:
 
 ```bash
 ./scripts/validate-all.sh
@@ -126,20 +116,19 @@ To validate both IDE configurations across the repository, run the global valida
 ```text
 .
 ├── Antigravity IDE/         # Antigravity IDE configuration & skills
-│   ├── AGENTS.md            # Maintenance instructions
-│   ├── antigravity-home/    # Managed global rules and manifests
-│   ├── .agents/skills/      # 13 Antigravity skills
-│   ├── docs/                # Antigravity layout & prompt guides
-│   └── scripts/             # Antigravity installers & validator
 ├── Github Copilot/          # GitHub Copilot configuration & prompts
-│   ├── AGENTS.md            # Maintenance instructions
-│   ├── .github/             # copilot-instructions.md & prompts/
-│   ├── docs/                # Copilot layout & prompt guides
-│   └── scripts/             # Copilot installers & validator
+├── Zed/                     # Zed Editor assistant settings & slash prompts
+├── VSCodium/                # VSCodium rules, Roo-Code modes & Continue prompts
+├── Terminal/                # Claude Code CLI, Aider, and Neovim templates
 ├── scripts/
-│   └── validate-all.sh      # Repository-wide validation runner
-├── README.md                # Unified multi-IDE documentation
-├── SPEC.md                  # Project specification
-├── ROADMAP.md               # Unified development roadmap
+│   ├── install.sh           # Unified multi-target installer (Linux/macOS)
+│   ├── install.ps1          # Unified multi-target installer (Windows)
+│   ├── test-skill-parity.sh # 100% skill parity verification test
+│   ├── validate-all.sh      # Full multi-environment validation suite
+│   └── validate.sh          # Legacy root validation wrapper
+├── README.md                # Unified multi-environment documentation
+├── Report.md                # Comprehensive repository analysis report
+├── SPEC.md                  # Universal multi-environment specification
+├── ROADMAP.md               # Phased development roadmap
 └── TASKS.md                 # Project task tracking
 ```

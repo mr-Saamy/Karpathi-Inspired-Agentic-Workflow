@@ -30,3 +30,8 @@ venv/
 target/
 dist/
 build/
+
+ROADMAP.md
+SPEC.md
+TASKS.md
+Report.md

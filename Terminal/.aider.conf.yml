@@ -1,0 +1,5 @@
+# Aider Configuration
+auto-commits: false
+check-update: false
+read:
+  - .aider.prompt.md
